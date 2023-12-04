@@ -12,15 +12,15 @@
 Trained models is now available freely at https://drive.google.com/drive/folders/1X7i1eO-EykCQcvqMeWeB7QXT3E9eLG08?usp=sharing. The current open source version only aims to reproduce the results reported in the article, so the inference speed is limited.
 
 ## Requirements
-python = 3.8.8 
+python==3.9.18
 
-pytorch = 1.9 
+torch==1.10.0+cu111torch 
 
-tape-proteins = 0.5 
+tape-proteins==0.5
 
-rdkit = 2021.03.5 
+rdkit==2023.9.2
 
-numpy = 1.19.5 
+numpy==1.26.2
 
-scikit-learn = 0.24.1 
+scikit-learn==1.3.2
 
