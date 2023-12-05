@@ -11,6 +11,7 @@ import random
 import os
 import numpy as np
 from featurizer import featurizer
+from model import Predictor
 
 class Tester(object):
     def __init__(self, model,device):
@@ -80,7 +81,12 @@ if __name__ == "__main__":
         device = torch.device('cpu')
         print('The code uses CPU!!!')
 
-    model = torch.load('Virtual Screening.pt')  # Load trained model
+    pretrained_model = torch.load('pretrained_bert.pt')
+    model = Predictor(pretrained_model, device=device)
+    model.load_state_dict(torch.load('virtual_screening.pt'))
+    # model = torch.load('Virtual Screening.pt')  # Load trained model
+    # print(model)
+    # torch.save(model.encoder.pretrain, "pretrained_bert.pt")
     model.to(device)
     sequence = "MPHSSLHPSIPCPRGHGAQKAALVLLSACLVTLWGLGEPPEHTLRYLVLHLA" # Example protein sequence
     smiles = "CS(=O)(C1=NN=C(S1)CN2C3CCC2C=C(C4=CC=CC=C4)C3)=O" # Example compound
