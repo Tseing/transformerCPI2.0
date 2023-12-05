@@ -2,9 +2,24 @@
 
   We only disclose the inference models. TransformerCPI2.0 is based on TransformerCPI whose codes are all released. The details of TransformerCPI2.0 are described in our paper https://doi.org/10.1038/s41467-023-39856-w which is now published on Nature communications. Trained models are available at present.
 
-## Setup and dependencies 
+## Build Environment
 
-`environment.yaml` is the conda environment of this project.
+Anaconda is easiest way to build environ. Anaconda should be installed correctly in your device. And use command below to create environment:
+
+```
+conda create -n transformercpi python=3.9.18
+```
+
+Refer to [PyTorch website](https://pytorch.org/get-started/locally/) and install PyTorch of compatible version (CPU or GPU version) with your device. 
+
+**Attention**: To avoid overwriting problem, torch and relative packages have been removed from `requirements.txt`. All packages of my environment are shown in `environment.yaml`.
+
+After PyTorch being installed, other packages can be installed easily using `pip` command:
+
+```
+conda activate transformercpi
+pip install -r requirements.txt
+```
 
 ## Inference
 
@@ -31,7 +46,7 @@ model.load_state_dict(torch.load('virtual_screening.pt'))
 
 python==3.9.18
 
-torch==1.10.0+cu111torch 
+torch==1.10.0
 
 tape-proteins==0.5
 
