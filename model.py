@@ -24,6 +24,7 @@ class Encoder(nn.Module):
         self.device = device
         self.encoder_layer = nn.TransformerEncoderLayer(d_model=self.hid_dim, nhead=8, dim_feedforward=self.hid_dim*4,dropout=0.1)
         self.encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=self.n_layers)
+        self.norm_first = False
 
     def forward(self, protein, mask):
         # protein = [batch, seq len]
@@ -69,11 +70,11 @@ class Decoder(nn.Module):
 
 
 class Predictor(nn.Module):
-    def __init__(self, encoder, decoder, device, atom_dim=34):
+    def __init__(self, pretrain, device, encode_layer=3, decoder_layer=3, atom_dim=34):
         super().__init__()
 
-        self.encoder = encoder
-        self.decoder = decoder
+        self.encoder = Encoder(pretrain=pretrain, n_layers=encode_layer, device=device)
+        self.decoder = Decoder(n_layers=decoder_layer, dropout=0.1, device=device)
         self.device = device
         self.fc_1 = nn.Linear(atom_dim, atom_dim)
         self.fc_2 = nn.Linear(atom_dim, 768)
