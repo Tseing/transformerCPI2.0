@@ -77,18 +77,21 @@ def seq_cat(prot,tokenizer):
     xs = tokenizer.encode(prot)
     return xs
 
-def featurizer(smiles,sequence):
+def featurizer(smiles: list, sequences: list):
+    data_pair = zip(smiles, sequences)
     compounds, adjacencies, proteins = [], [], []
     tokenizer = TAPETokenizer(vocab='iupac')
 
-    atom_feature, adj = mol_features(smiles)
-    compounds.append(atom_feature)
-    adjacencies.append(adj)
-    sequence = seq_cat(sequence, tokenizer)
-    with torch.no_grad():
-        protein_embedding = torch.tensor([sequence], dtype=torch.int64)
-    proteins.append(protein_embedding.squeeze(0).numpy())
-    return compounds,adjacencies,proteins
+    # TODO: deprecate for loop and use list map or numpy.vectorize
+    for smi, sequence in data_pair:
+        atom_feature, adj = mol_features(smi)
+        compounds.append(atom_feature)
+        adjacencies.append(adj)
+        sequence = seq_cat(sequence, tokenizer)
+        with torch.no_grad():
+            protein_embedding = torch.tensor([sequence], dtype=torch.int64)
+        proteins.append(protein_embedding.squeeze(0).numpy())
+    return compounds, adjacencies, proteins
 
 if __name__ == "__main__":
     print(0)
