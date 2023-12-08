@@ -56,3 +56,4 @@ numpy==1.26.2
 
 scikit-learn==1.3.2
 
+Detailed infos in [environment.yaml](./environment.yaml)
