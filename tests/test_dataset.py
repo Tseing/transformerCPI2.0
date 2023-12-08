@@ -2,7 +2,7 @@ import torch
 
 import tests.deprecated as deprecated
 from src.model.utils import featurizer
-from scripts.predict import pack
+from src.model.transformer import pack
 from tests.utils import check_shape_value
 
 
