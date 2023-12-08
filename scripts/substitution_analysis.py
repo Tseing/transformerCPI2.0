@@ -5,11 +5,11 @@
 @Filename: substitution_analysis.py
 @Software: PyCharm
 """
+import sys
+sys.path.append("..")
+
 import torch
-import random
-import os
-import numpy as np
-from featurizer import featurizer
+from src.model.utils import featurizer
 import pandas as pd
 
 if __name__ == "__main__":

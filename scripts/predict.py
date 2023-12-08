@@ -5,13 +5,15 @@
 @Filename: predict.py
 @Software: PyCharm
 """
+import sys
+sys.path.append("..")
 
 import numpy as np
 import torch
 from numpy import ndarray
 
-from featurizer import featurizer
-from model import Predictor
+from src.model.transformer import Predictor
+from src.model.utils import featurizer
 
 
 class Tester(object):
@@ -77,9 +79,9 @@ if __name__ == "__main__":
         device = torch.device("cpu")
         print("The code uses CPU!!!")
 
-    pretrained_model = torch.load("pretrained_bert.pt")
+    pretrained_model = torch.load("../pretrained_bert.pt")
     model = Predictor(pretrained_model, device=device)
-    model.load_state_dict(torch.load("virtual_screening.pt"))
+    model.load_state_dict(torch.load("../virtual_screening.pt"))
     model.to(device)
     # Example protein sequence
     sequence = [

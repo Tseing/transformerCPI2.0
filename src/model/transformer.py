@@ -7,11 +7,7 @@
 """
 import torch
 import torch.nn as nn
-import torch.optim as optim
 import torch.nn.functional as F
-import math
-import numpy as np
-from sklearn.metrics import roc_auc_score, precision_recall_curve, auc
 
 
 class Encoder(nn.Module):

@@ -5,13 +5,15 @@
 @Filename: mutation_analysis.py
 @Software: PyCharm
 """
+import sys
+sys.path.append("..")
 
 import torch
 import random
 import os
-from model import *
+from src.model.transformer import *
 import numpy as np
-from featurizer import featurizer
+from src.model.utils import featurizer
 
 if __name__ == "__main__":
     import warnings
